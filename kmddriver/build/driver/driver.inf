@@ -1,0 +1,43 @@
+[Version]
+Signature="$WINDOWS NT$"
+CatalogFile=driver.cat
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%Mfg%
+DriverVer = 01/06/2026,13.47.10.2
+
+[Manufacturer]
+%Mfg%=Models,NTamd64
+
+[Models.NTamd64]
+%TestDevice.DeviceDesc%=Install, Root\TestDevice
+
+[Install]
+CopyFiles=CopyFilesSection
+
+[Install.Services]
+AddService=TestDriver,0x00000002,ServiceInstall
+
+[ServiceInstall]
+DisplayName=Test Driver
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\driver.sys
+
+[CopyFilesSection]
+driver.sys
+
+[DestinationDirs]
+CopyFilesSection=12
+
+[SourceDisksNames]
+1 = %DiskName%,,,
+
+[SourceDisksFiles]
+driver.sys = 1
+
+[Strings]
+Mfg="del"
+DiskName="Test Driver Installation Disk"
+TestDevice.DeviceDesc="Test Driver"
